@@ -1,0 +1,5 @@
+It is need to install composer for the project to work.
+You can find it in https://getcomposer.org/ it need to be in the path of system variable 
+The project is allready with te phpunit version 7.0
+To run the testes files needed first to in the project folder and autogenerate them with command
+composer du or composer dump and after go and run the files
