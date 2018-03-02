@@ -12,20 +12,24 @@
  */
 interface ApiMethod {
 
-    public function getHoleList($placeToSearch);
+public function getHoleList($placeToSearch);
 
-    public function getDescriptionOfAGivenType($idOfGivenType);
+public function getDescriptionOfAGivenType($idOfGivenType);
 
-    public function getDescriptiveListWithLimitations($idOfGivenType, $numberOfLimit);
+public function getDescriptionByGivenName($byGivenName);
 
-    public function getDescriptiveListOfAskedGroup($propertyOfGroupAsked);
+public function getSingleDescriptionOfAsketParameter($nameOfAsketParameter) ;
 
-    public function getDescriptiveListOfAskedGroupWithLimit($propertyOfGroupAsked, $numberLimit);
+public function getDescriptiveListWithLimitations($idOfGivenType, $numberOfLimit);
 
-    public function getNumberOfPropertiesThatAreRequested($placeToSearch, $numberLimit);
+public function getDescriptiveListOfAskedGroup($propertyOfGroupAsked);
 
-    public function getRelationIfExist($placeToSearch, $propertyOfRelationAsked);
-    
-    public function getRelationIfExistWithLimit($placeToSearch, $propertyOfRelationAsked, $numberLimit);
-    
+public function getDescriptiveListOfAskedGroupWithLimit($propertyOfGroupAsked, $numberLimit);
+
+public function getNumberOfPropertiesThatAreRequested($placeToSearch, $numberLimit);
+
+public function getRelationIfExist($placeToSearch, $propertyOfRelationAsked);
+
+public function getRelationIfExistWithLimit($placeToSearch, $propertyOfRelationAsked, $numberLimit);
+
 }

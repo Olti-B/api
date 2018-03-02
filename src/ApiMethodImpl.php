@@ -13,6 +13,9 @@
  */
 class ApiMethodImpl implements ApiMethod{
     //put your code here
+    
+    
+    
     public function getDescriptionOfAGivenType($idOfGivenType) {
         
     }
@@ -42,6 +45,14 @@ class ApiMethodImpl implements ApiMethod{
     }
 
     public function getRelationIfExistWithLimit($placeToSearch, $propertyOfRelationAsked, $numberLimit) {
+        
+    }
+
+    public function getDescriptionByGivenName($byGivenName) {
+        
+    }
+
+    public function getSingleDescriptionOfAsketParameter($nameOfAsketParameter) {
         
     }
 
