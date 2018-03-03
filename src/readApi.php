@@ -4,7 +4,7 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 require '../vendor/autoload.php';
-
+require 'apiFile/ApiMethodImpl.php';
 $app = new \Slim\App;
 $app->get('/des/getAllList', function (Request $request, Response $response) {
     try {
@@ -34,7 +34,7 @@ $app->get('/des/{parameter}', function (Request $request, Response $response) {
 $app->get('/des/limit/{limit}', function (Request $request, Response $response) {
     $numberLimit = $request->getAttribute('limit');
     try {
-        $getAll = new \ApiMethodImpl();
+        $getAll = new \apiFiles\ApiMethodImpl();
         $numberOfRequestedParameters = $getAll->getNumberOfPropertiesThatAreRequested($numberLimit);
         $response->getBody()->write($numberOfRequestedParameters);
         return $response;

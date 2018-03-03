@@ -8,7 +8,7 @@
  */
 require '../vendor/autoload.php';
 
-require 'DatabaseConn.php';
+require 'Database/DatabaseConn.php';
 
 class ApiMethodImpl extends QueryForApiMethod {
 

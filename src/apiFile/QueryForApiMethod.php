@@ -1,9 +1,9 @@
 <?php
 
-
 class QueryForApiMethod {
-    //put your code here
-    
+
+
+
     protected function getAllProperties() {
         return "SELECT * FROM rest";
     }
@@ -13,11 +13,11 @@ class QueryForApiMethod {
     }
 
     public static function getValuesWithLimit($numberLimit) {
-         return "SELECT * FROM rest LIMIT $numberLimit";
+        return "SELECT * FROM rest LIMIT $numberLimit";
     }
 
     public static function getNameOfGivenTypeWithLimit($nameOfGivenType, $numberLimit) {
-          return "SELECT $nameOfGivenType FROM rest LIMIT $numberLimit";
+        return "SELECT $nameOfGivenType FROM rest LIMIT $numberLimit";
     }
 
 }
