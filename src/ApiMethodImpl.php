@@ -10,12 +10,14 @@
  * Description of ApiMethodImpl
  *
  * @author Olti
+ * 
  */
-class ApiMethodImpl implements ApiMethod{
-    //put your code here
-    
-    
-    
+require '../vendor/autoload.php';
+
+require 'DatabaseConn.php';
+
+class ApiMethodImpl extends QueryForApiMethod {
+
     public function getDescriptionOfAGivenType($idOfGivenType) {
         
     }
@@ -32,8 +34,10 @@ class ApiMethodImpl implements ApiMethod{
         
     }
 
-    public function getHoleList($placeToSearch) {
-        
+    public function getHoleList() {
+        $result = $this->getConnection()->connect()->query(parent::getAllProperties())->fetchAll(PDO::FETCH_OBJ);
+        $encode = $this->encodeJson($result);
+        return $encode;
     }
 
     public function getNumberOfPropertiesThatAreRequested($placeToSearch, $numberLimit) {
@@ -54,6 +58,16 @@ class ApiMethodImpl implements ApiMethod{
 
     public function getSingleDescriptionOfAsketParameter($nameOfAsketParameter) {
         
+    }
+
+    private function encodeJson($result) {
+        $jsonResponse = json_encode($result);
+        return $jsonResponse;
+    }
+
+    protected function getConnection() {
+        $getConn = new DatabaseConn();
+        return $getConn;
     }
 
 }
