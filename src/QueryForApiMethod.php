@@ -16,4 +16,8 @@ class QueryForApiMethod {
          return "SELECT * FROM rest LIMIT $numberLimit";
     }
 
+    public static function getNameOfGivenTypeWithLimit($nameOfGivenType, $numberLimit) {
+          return "SELECT $nameOfGivenType FROM rest LIMIT $numberLimit";
+    }
+
 }

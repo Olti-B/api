@@ -43,4 +43,18 @@ $app->get('/des/limit/{limit}', function (Request $request, Response $response) 
     }
     return $response;
 });
+
+$app->get('/des/{nameOfGivenType}/{numberOfLimit}', function (Request $request, Response $response) {
+    $nameOfGivenType = $request->getAttribute('nameOfGivenType');
+    $numberLimit = $request->getAttribute('numberOfLimit');
+    try {
+        $getAll = new \ApiMethodImpl();
+        $numberOfRequestedParameters = $getAll->getDescriptiveListWithLimitations($nameOfGivenType, $numberLimit);
+        $response->getBody()->write($numberOfRequestedParameters);
+        return $response;
+    } catch (PDOException $ex) {
+        echo 'Cound not limited values with name '.$nameOfGivenType.' and with limit ' . $numberLimit . " in " . $ex;
+    }
+    return $response;
+});
 $app->run();

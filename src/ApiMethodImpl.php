@@ -12,8 +12,10 @@ require 'DatabaseConn.php';
 
 class ApiMethodImpl extends QueryForApiMethod {
 
-    public function getDescriptiveListWithLimitations($nameOfGivenType, $numberOfLimit) {
-        
+    public function getDescriptiveListWithLimitations($nameOfGivenType, $numberLimit) {
+        $result = $this->getConnection()->connect()->query(parent::getNameOfGivenTypeWithLimit($nameOfGivenType, $numberLimit))->fetchAll(PDO::FETCH_OBJ);
+        $encode = $this->encodeJson($result);
+        return $encode;
     }
 
     public function getHoleList() {
