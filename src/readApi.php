@@ -1,11 +1,12 @@
 <?php
+
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 require '../vendor/autoload.php';
 
 $app = new \Slim\App;
-$app->get('/getAllList', function (Request $request, Response $response, array $args) {
+$app->get('/des/getAllList', function (Request $request, Response $response) {
     try {
         $getAll = new \ApiMethodImpl();
         $holeList = $getAll->getHoleList();
@@ -15,14 +16,31 @@ $app->get('/getAllList', function (Request $request, Response $response, array $
         echo 'Cound not take mesage back from the database ' . $ex;
     }
 });
+
+$app->get('/des/{parameter}', function (Request $request, Response $response) {
+    $parameter = $request->getAttribute('parameter');
+    try {
+        $getAll = new \ApiMethodImpl();
+        $singleParameter = $getAll->getDescriptionByGivenParameter($parameter);
+        $response->getBody()->write($singleParameter);
+        return $response;
+    } catch (PDOException $ex) {
+        echo 'Cound not take sinlge value from database ' . $ex;
+        echo 'Cound not limited values with limit ' . $parameter . " in " . $ex;
+    }
+    return $response;
+});
+
+$app->get('/des/limit/{limit}', function (Request $request, Response $response) {
+    $numberLimit = $request->getAttribute('limit');
+    try {
+        $getAll = new \ApiMethodImpl();
+        $numberOfRequestedParameters = $getAll->getNumberOfPropertiesThatAreRequested($numberLimit);
+        $response->getBody()->write($numberOfRequestedParameters);
+        return $response;
+    } catch (PDOException $ex) {
+        echo 'Cound not limited values with limit ' . $numberLimit . " in " . $ex;
+    }
+    return $response;
+});
 $app->run();
-
-
-//$app = new \Slim\App;
-//$app->get('/des/{name}', function (Request $request, Response $response, array $args) {
-//    $name = $args['name'];
-//    $response->getBody()->write("Hello, $name");
-//
-//    return $response;
-//});
-//$app->run();

@@ -1,11 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of ApiMethodImpl
  *
@@ -18,19 +12,7 @@ require 'DatabaseConn.php';
 
 class ApiMethodImpl extends QueryForApiMethod {
 
-    public function getDescriptionOfAGivenType($idOfGivenType) {
-        
-    }
-
-    public function getDescriptiveListOfAskedGroup($propertyOfGroupAsked) {
-        
-    }
-
-    public function getDescriptiveListOfAskedGroupWithLimit($propertyOfGroupAsked, $numberLimit) {
-        
-    }
-
-    public function getDescriptiveListWithLimitations($idOfGivenType, $numberOfLimit) {
+    public function getDescriptiveListWithLimitations($nameOfGivenType, $numberOfLimit) {
         
     }
 
@@ -40,34 +22,24 @@ class ApiMethodImpl extends QueryForApiMethod {
         return $encode;
     }
 
-    public function getNumberOfPropertiesThatAreRequested($placeToSearch, $numberLimit) {
-        
+    public function getNumberOfPropertiesThatAreRequested($numberLimit) {
+        $result = $this->getConnection()->connect()->query(parent::getValuesWithLimit($numberLimit))->fetchAll(PDO::FETCH_OBJ);
+        $encode = $this->encodeJson($result);
+        return $encode;
     }
 
-    public function getRelationIfExist($placeToSearch, $propertyOfRelationAsked) {
-        
+    public function getDescriptionByGivenParameter($parameter) {
+        $result = $this->getConnection()->connect()->query(parent::getDescriptionByGivenParameter($parameter))->fetchAll(PDO::FETCH_OBJ);
+        $encode = $this->encodeJson($result);
+        return $encode;
     }
 
-    public function getRelationIfExistWithLimit($placeToSearch, $propertyOfRelationAsked, $numberLimit) {
-        
-    }
-
-    public function getDescriptionByGivenName($byGivenName) {
-        
-    }
-
-    public function getSingleDescriptionOfAsketParameter($nameOfAsketParameter) {
-        
-    }
-
-    private function encodeJson($result) {
-        $jsonResponse = json_encode($result);
-        return $jsonResponse;
+    protected function encodeJson($result) {
+        return $jsonResponse = json_encode($result);
     }
 
     protected function getConnection() {
-        $getConn = new DatabaseConn();
-        return $getConn;
+        return $getConn = new DatabaseConn();
     }
 
 }

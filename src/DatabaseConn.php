@@ -20,6 +20,7 @@ class DatabaseConn {
     protected $database = "test";
 
     function connect() {
+        
         $mysql_connect_str = "mysql:host=$this->host;dbname=$this->database";
         
         $this->conn = new PDO($mysql_connect_str, $this->user, $this->password);
